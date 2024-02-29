@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Universal AI</title>
+    <!-- tailwind and daisy ui -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
+
 <body>
-    
+    <main>
+        <div class="text-center space-y-6 mt-16">
+            <h1 class="text-5xl font-extrabold">Universal AI Hub</h1>
+            <button class="btn bg-[#EB5757] text-base text-white">Sort By Date</button>
+        </div>
+
+        <!-- tools card -->
+        <section class="mt-10 flex flex-col justify-center items-center">
+            <div id="card-container" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                
+            </div>
+        </section>
+    </main>
+    <!-- js link -->
+    <script src="./index.js"></script>
 </body>
+
 </html>
