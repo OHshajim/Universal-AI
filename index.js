@@ -15,32 +15,37 @@ const displayTools = (tools) => {
         // console.log(tool.image);
         const div = document.createElement('div')
         div.innerHTML = `
-        <div class="card w-96 bg-base-100 shadow-xl p-5">
-           <figure ><img src="${tool.image ? tool.image : 'no image available'}" alt="${tool.name} class="rounded-xl" /></figure>
+        <div class="card   bg-base-100 shadow-xl p-5 border-2 ">
+           <figure class="h-[300px] " ><img src="${tool.image ? tool.image : 'no image available'}" alt="${tool.name}" class="rounded-xl"/></figure>
                     <div class="card-body">
                     <h2 class="card-title ">Features</h2>
-                    <ul id="features">
-                    </ul>
-                    <h2 class="card-title pt-5 border-t border-[#111111]">${tool.name}</h2>
-                      <p>${tool.published_in}</p>
-                      <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Buy Now</button>
+                    <ul id="${tool.id}"  class="mb-2">
+                    </ul> <hr>
+                    <div class ="flex justify-between items-center">
+                      <div>
+                        <h2 class="card-title pt-5  ">${tool.name}</h2>
+                        <p>${tool.published_in}</p>
                       </div>
+                      <button class="btn rounded-full text-2xl text-center text-[#EB5757]">></button>                    
+                    </div>
                     </div>
         </div>
         `;
         cards.appendChild(div)
-        featuresList(tool.features)
+        featuresList(tool.features, tool.id)
 
     });
 
 }
-function featuresList(features) {
-    const list = document.getElementById('features');
+// display features lists
+const featuresList = (features, id) => {
+    const list = document.getElementById(id);
+    let num = 1
     features.forEach(feature => {
         const li = document.createElement('li')
-        li.innerText = feature;
+        li.innerText = num + ". " + feature;
         list.appendChild(li)
+        num++;
     });
 }
 
