@@ -80,7 +80,7 @@ async function ToolInfoModel(id) {
     <div class="flex justify-between items-center gap-4 text-base font-semibold mt-5">
     <div> 
     <h3 class="text-2xl ">Features</h3>
-    <ul id="">
+    <ul id="${detail.id}">
     </ul>
     </div>
 
@@ -95,21 +95,6 @@ async function ToolInfoModel(id) {
     </div>
     <div></div>
     `;
-    // modelFeature(detail.features,detail.tool_name)
     featuresList(detail.integrations , detail.tool_name)
 }
-aiDetails()
-function modelFeature(features,name){
-    console.log(features);
-    const list = document.getElementById(name);
-    for (const feature in features) {
-        // console.log(feature);
-        const li = document.createElement('li')
-        for (const key in features) {
-            console.log(key);
-        }
-        list.appendChild(li)
-    }
-        
-   
-}
+        aiDetails()
