@@ -4,7 +4,6 @@ async function aiDetails() {
     const tools = data.data.tools;
     console.log(tools);
     displayTools(tools)
-
 }
 
 // display tools or AI
@@ -15,18 +14,19 @@ const displayTools = (tools) => {
         // console.log(tool.image);
         const div = document.createElement('div')
         div.innerHTML = `
-        <div class="card   bg-base-100 shadow-xl p-5 border-2 ">
-           <figure class="h-[300px] " ><img src="${tool.image ? tool.image : 'no image available'}" alt="${tool.name}" class="rounded-xl"/></figure>
+        <div class="card   bg-base-100 shadow-xl p-5 border-2 lg:h-[530px]">
+           <figure  ><img src="${tool.image}" alt="${tool.name} " class="rounded-xl max-h-[300px] w-full"/></figure>
                     <div class="card-body">
                     <h2 class="card-title ">Features</h2>
                     <ul id="${tool.id}"  class="mb-2">
-                    </ul> <hr>
+                    </ul> 
+                    <hr>
                     <div class ="flex justify-between items-center">
                       <div>
                         <h2 class="card-title pt-5  ">${tool.name}</h2>
                         <p>${tool.published_in}</p>
                       </div>
-                      <button class="btn rounded-full text-2xl text-center text-[#EB5757]">></button>                    
+                      <button class="btn rounded-full text-2xl text-center text-[#EB5757]" onclick="tool_modal.showModal(); ToolInfoModel(${tool.id})" >></button>                    
                     </div>
                     </div>
         </div>
@@ -37,6 +37,7 @@ const displayTools = (tools) => {
     });
 
 }
+
 // display features lists
 const featuresList = (features, id) => {
     const list = document.getElementById(id);
@@ -49,4 +50,64 @@ const featuresList = (features, id) => {
     });
 }
 
+// model
+const model_container = document.getElementById('Info-container-model')
+async function ToolInfoModel(id) {
+    const res = await fetch(` https://openapi.programming-hero.com/api/ai/tool/0${id}`);
+    const data = await res.json();
+    const detail = data.data;
+    console.log(detail)
+
+    model_container.innerHTML = `
+    <div>
+    <h3 class="text-2xl">${detail.description}</h3>
+
+    <div class="flex justify-between items-center gap-4 text-base font-bold mt-5">
+    <div class="text-center bg-white text-[#03A30A] p-4 rounded-xl flex-1 h-[100px]  flex flex-col justify-center">
+    <p>${detail.pricing[0].price}</p>
+    <p>${detail.pricing[0].plan}</p>
+    </div>
+    <div class="text-center bg-white text-[#F28927]  p-4 rounded-xl flex-1 h-[100px]   flex flex-col  justify-center">
+    <p>${detail.pricing[1].price}</p>
+    <p>${detail.pricing[1].plan}</p>
+    </div>
+    <div class="text-center bg-white text-[#EB5757] p-4 rounded-xl flex-1 h-[100px]   flex flex-col justify-center">
+    <p>${detail.pricing[2].price}</p>
+    <p>${detail.pricing[2].plan}</p>
+    </div>  
+    </div>
+
+    <div class="flex justify-between items-center gap-4 text-base font-semibold mt-5">
+    <div> 
+    <h3 class="text-2xl ">Features</h3>
+    <ul id="${detail.tool_name}">
+    </ul>
+    </div>
+
+    <div>
+    <h3 class="text-2xl">Integrations</h3>
+    </div>
+
+    </div>
+
+    </div>
+    <div></div>
+    `;
+    modelFeature(detail.features,detail.tool_name)
+
+}
 aiDetails()
+function modelFeature(features,name){
+    console.log(features);
+    const list = document.getElementById(name);
+    for (const feature in features) {
+        // console.log(feature);
+        const li = document.createElement('li')
+        for (const key in features) {
+            console.log(key);
+        }
+        list.appendChild(li)
+    }
+        
+   
+}
