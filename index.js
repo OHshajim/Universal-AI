@@ -14,8 +14,8 @@ const displayTools = (tools) => {
         // console.log(tool.image);
         const div = document.createElement('div')
         div.innerHTML = `
-        <div class="card   bg-base-100 shadow-xl p-5 border-2 lg:h-[530px]">
-           <figure  ><img src="${tool.image}" alt="${tool.name} " class="rounded-xl max-h-[300px] w-full"/></figure>
+        <div class="card   bg-base-100 shadow-xl p-5 border-2 lg:h-[600px]">
+           <figure ><img src="${tool.image}" alt="${tool.name} " class="rounded-xl "/></figure>
                     <div class="card-body">
                     <h2 class="card-title ">Features</h2>
                     <ul id="${tool.id}"  class="mb-2">
