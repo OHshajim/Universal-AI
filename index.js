@@ -14,7 +14,7 @@ const displayTools = (tools) => {
         // console.log(tool.image);
         const div = document.createElement('div')
         div.innerHTML = `
-        <div class="card   bg-base-100 shadow-xl p-5 border-2 lg:h-[500px]">
+        <div class="card   bg-base-100 shadow-xl p-5 border-2 lg:h-[510px]">
            <figure ><img src="${tool.image}" alt="${tool.name} " class="rounded-xl "/></figure>
                     <div class="card-body">
                     <h2 class="card-title ">Features</h2>
@@ -51,6 +51,7 @@ const featuresList = (features, id) => {
 };
 
 const FList = (features, id) => {
+    // const Id =id.toUpperCase()
     const list = document.getElementById(id);
     let num = 1
 
@@ -63,7 +64,8 @@ const FList = (features, id) => {
         num++;
 
     }
-}
+};
+
 // model
 const model_container = document.getElementById('Info-container-model')
 async function ToolInfoModel(id) {
@@ -76,7 +78,7 @@ async function ToolInfoModel(id) {
     <div>
     <h3 class="text-2xl">${detail.description}</h3>
     <div class="flex justify-between items-center gap-4 text-base font-bold mt-5">
-    <div class="text-center bg-white text-[#03A30A] p-4 rounded-xl flex-1 h-[100px]  flex flex-col justify-center">
+    <div class="text-center bg-white text-[#41bb47] p-4 rounded-xl flex-1 h-[100px]  flex flex-col justify-center">
     <p>${detail.pricing[0].price}</p>
     <p>${detail.pricing[0].plan}</p>
     </div>
@@ -92,12 +94,12 @@ async function ToolInfoModel(id) {
     <div class="flex justify-between items-center gap-4 text-base font-semibold mt-5">
     <div> 
     <h3 class="text-2xl ">Features</h3>
-    <ul id="${detail.id}">
+    <ul id="${detail.name}">
     </ul>
     </div>
     <div>
     <h3 class="text-2xl">Integrations</h3>
-    <ul id="${detail.tool_name}" class="mt-3">
+    <ul id="${detail.tool_name}" class="mt-3 list-disc">
     </ul>
     </div>
     </div>
@@ -105,8 +107,7 @@ async function ToolInfoModel(id) {
     <div></div>
     `;
     featuresList(detail.integrations , detail.tool_name);
-    FList(detail.features , detail.id);
-    // featuresList()
+    // FList(detail.features , detail.id);
 }
 
 aiDetails()
