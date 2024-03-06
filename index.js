@@ -105,14 +105,14 @@ async function ToolInfoModel(id) {
     </div>
 
 
-    <div class="p-10">
+    <div class=" border border-[#E7E7E7] rounded-2xl">
 
-    <div class="card w-96 bg-base-100 shadow-xl">
-  <figure><img src="${detail.image_link[0]}" alt="Shoes" /></figure>
+    <div class="card  ">
+  <figure><img src="${detail.image_link[0]}" alt="cover" class="px-10 pt-10" /></figure>
   <div class="card-body">
 
-    <h2 class="card-title"></h2>
-    <p></p>
+    <h2 class="card-title">${detail.input_output_examples[0]['input']}</h2>
+    <p>${detail.input_output_examples[0].output}</p>
    
   </div>
 </div>
