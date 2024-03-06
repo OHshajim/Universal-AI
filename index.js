@@ -73,36 +73,51 @@ async function ToolInfoModel(id) {
     console.log(detail)
 
     model_container.innerHTML = `
-    <div>
-    <h3 class="text-2xl">${detail.description}</h3>
-    <div class="flex justify-between items-center gap-4 text-base font-bold mt-5">
-    <div class="text-center bg-white text-[#41bb47] p-4 rounded-xl flex-1 h-[100px]  flex flex-col justify-center">
-    <p>${detail?.pricing[0].price }</p>
-    <p>${detail.pricing[0].plan}</p>
+    <div class="bg-[#EB57570D] p-10 border border-[#f34343cb] rounded-2xl ">
+      <h3 class="text-2xl font-semibold">${detail.description}</h3>
+      <div class="flex justify-between items-center gap-4 text-base font-bold mt-5">
+        <div class="text-center bg-white text-[#41bb47] p-4 rounded-xl flex-1 h-[100px]  flex flex-col justify-center">
+          <p>${detail?.pricing[0].price }</p>
+          <p>${detail.pricing[0].plan}</p>
+        </div>
+        <div class="text-center bg-white text-[#F28927]  p-4 rounded-xl flex-1 h-[100px]   flex flex-col  justify-center">
+          <p>${detail.pricing[1].price}</p>
+          <p>${detail.pricing[1].plan}</p>
+        </div>
+        <div class="text-center bg-white text-[#EB5757] p-4 rounded-xl flex-1 h-[100px]   flex flex-col justify-center">
+          <p>${detail.pricing[2].price}</p>
+          <p>${detail.pricing[2].plan}</p>
+        </div>  
+       </div>
+
+      <div class="flex justify-between items-center gap-4 text-base font-semibold mt-5">
+        <div> 
+         <h3 class="text-2xl ">Features</h3>
+         <ul id="${text}"  class="mt-3 list-disc">
+         </ul>
+        </div>
+        <div>
+         <h3 class="text-2xl">Integrations</h3>
+         <ul id="${detail.tool_name}" class="mt-3 ">
+         </ul>
+        </div>
+      </div>
     </div>
-    <div class="text-center bg-white text-[#F28927]  p-4 rounded-xl flex-1 h-[100px]   flex flex-col  justify-center">
-    <p>${detail.pricing[1].price}</p>
-    <p>${detail.pricing[1].plan}</p>
+
+
+    <div class="p-10">
+
+    <div class="card w-96 bg-base-100 shadow-xl">
+  <figure><img src="${detail.image_link[0]}" alt="Shoes" /></figure>
+  <div class="card-body">
+
+    <h2 class="card-title"></h2>
+    <p></p>
+   
+  </div>
+</div>
+    
     </div>
-    <div class="text-center bg-white text-[#EB5757] p-4 rounded-xl flex-1 h-[100px]   flex flex-col justify-center">
-    <p>${detail.pricing[2].price}</p>
-    <p>${detail.pricing[2].plan}</p>
-    </div>  
-    </div>
-    <div class="flex justify-between items-center gap-4 text-base font-semibold mt-5">
-    <div> 
-    <h3 class="text-2xl ">Features</h3>
-    <ul id="${text}"  class="mt-3 list-disc">
-    </ul>
-    </div>
-    <div>
-    <h3 class="text-2xl">Integrations</h3>
-    <ul id="${detail.tool_name}" class="mt-3 ">
-    </ul>
-    </div>
-    </div>
-    </div>
-    <div></div>
     `;
     featuresList(detail.integrations , detail.tool_name);
     FList(detail.features , text);
