@@ -51,17 +51,14 @@ const featuresList = (features, id) => {
 };
 
 const FList = (features, id) => {
-    // const Id =id.toUpperCase()
     const list = document.getElementById(id);
-    let num = 1
 
     for (const key in features) {
-        // console.log(key[feature_name]);
-    
+        console.log(features[key]['feature_name']);
+        
         const li = document.createElement('li')
-        li.innerText = num + ". " + 1;
-        list.appendChild(li)
-        num++;
+            li.innerText =features[key]['feature_name'];
+            list.appendChild(li)
 
     }
 };
@@ -72,6 +69,7 @@ async function ToolInfoModel(id) {
     const res = await fetch(` https://openapi.programming-hero.com/api/ai/tool/0${id}`);
     const data = await res.json();
     const detail = data.data;
+    let text = detail.description
     console.log(detail)
 
     model_container.innerHTML = `
@@ -79,7 +77,7 @@ async function ToolInfoModel(id) {
     <h3 class="text-2xl">${detail.description}</h3>
     <div class="flex justify-between items-center gap-4 text-base font-bold mt-5">
     <div class="text-center bg-white text-[#41bb47] p-4 rounded-xl flex-1 h-[100px]  flex flex-col justify-center">
-    <p>${detail.pricing[0].price}</p>
+    <p>${detail?.pricing[0].price }</p>
     <p>${detail.pricing[0].plan}</p>
     </div>
     <div class="text-center bg-white text-[#F28927]  p-4 rounded-xl flex-1 h-[100px]   flex flex-col  justify-center">
@@ -94,12 +92,12 @@ async function ToolInfoModel(id) {
     <div class="flex justify-between items-center gap-4 text-base font-semibold mt-5">
     <div> 
     <h3 class="text-2xl ">Features</h3>
-    <ul id="${detail.name}">
+    <ul id="${text}"  class="mt-3 list-disc">
     </ul>
     </div>
     <div>
     <h3 class="text-2xl">Integrations</h3>
-    <ul id="${detail.tool_name}" class="mt-3 list-disc">
+    <ul id="${detail.tool_name}" class="mt-3 ">
     </ul>
     </div>
     </div>
@@ -107,7 +105,7 @@ async function ToolInfoModel(id) {
     <div></div>
     `;
     featuresList(detail.integrations , detail.tool_name);
-    // FList(detail.features , detail.id);
+    FList(detail.features , text);
 }
 
 aiDetails()
